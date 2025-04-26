@@ -1,16 +1,13 @@
-/* General Styles */
-/* Define CSS Variables for easier maintenance and theming */
 :root {
-  /* Color Palette */
-  --primary-color: #5e35b1; /* Heading color, main button accent */
-  --primary-color-dark: #673ab7; /* Primary color hover */
-  --primary-color-light: #9575cd; /* Small button color */
-  --primary-color-light-hover: #7e57c2; /* Small button hover */
+  --primary-color: #5e35b1;
+  --primary-color-dark: #673ab7;
+  --primary-color-light: #9575cd;
+  --primary-color-light-hover: #7e57c2;
   --background-gradient-light: linear-gradient(to bottom right, #a8edea, #fed6e3);
   --background-gradient-dark: linear-gradient(to bottom right, #424242, #212121);
   --text-color-dark: #333;
   --text-color-light: #eee;
-  --text-color-medium: #555; /* Used for less important text */
+  --text-color-medium: #555;
   --surface-color-light: white;
   --surface-color-dark: #303030;
   --border-color-light: #e0e0e0;
@@ -19,22 +16,21 @@
   --shadow-dark: rgba(0, 0, 0, 0.5);
   --shadow-subtle-light: rgba(0, 0, 0, 0.05);
   --shadow-subtle-dark: rgba(0, 0, 0, 0.3);
-  --correct-light: #e8f5e9; /* Light green background */
-  --correct-dark: #388e3c; /* Darker green background */
-  --correct-text-light: #2e7d32; /* Dark green text */
-  --correct-text-dark: #e8f5e9; /* Light green text */
-  --correct-border-light: #a5d6a7; /* Green border */
-  --correct-border-dark: #66bb6a; /* Lighter green border */
-  --incorrect-light: #ffebee; /* Light red background */
-  --incorrect-dark: #d32f2f; /* Darker red background */
-  --incorrect-text-light: #c62828; /* Dark red text */
-  --incorrect-text-dark: #ffebee; /* Light red text */
-  --incorrect-border-light: #ef9a9a; /* Red border */
-  --incorrect-border-dark: #ef5350; /* Lighter red border */
+  --correct-light: #e8f5e9;
+  --correct-dark: #388e3c;
+  --correct-text-light: #2e7d32;
+  --correct-text-dark: #e8f5e9;
+  --correct-border-light: #a5d6a7;
+  --correct-border-dark: #66bb6a;
+  --incorrect-light: #ffebee;
+  --incorrect-dark: #d32f2f;
+  --incorrect-text-light: #c62828;
+  --incorrect-text-dark: #ffebee;
+  --incorrect-border-light: #ef9a9a;
+  --incorrect-border-dark: #ef5350;
   --disabled-color: #cccccc;
-  --disabled-text: #666; /* Added for disabled state text */
+  --disabled-text: #666;
 
-  /* Spacing */
   --padding-small: 10px;
   --padding-medium: 15px;
   --padding-large: 20px;
@@ -53,7 +49,6 @@
   --gap-xl: 30px;
   --gap-xxl: 40px;
 
-  /* Border Radius */
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 12px;
@@ -61,7 +56,6 @@
   --border-radius-xxl: 20px;
   --border-radius-round: 25px;
 
-  /* Font Sizes */
   --font-size-small: 14px;
   --font-size-medium: 15px;
   --font-size-large: 16px;
@@ -79,396 +73,387 @@
 
 body {
   font-family: "Segoe UI", sans-serif;
-  /* Use a pseudo-element for background transition */
   position: relative;
   min-height: 100vh;
-  padding: var(--padding-large); /* Use CSS variable */
-  color: var(--text-color-dark); /* Use CSS variable */
-  overflow-y: auto; /* Allow body scroll by default */
+  padding: var(--padding-large);
+  color: var(--text-color-dark);
+  overflow-y: auto;
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: flex-start; /* Align items to the top */
-  transition: color 0.3s ease; /* Smooth text color transition */
+  justify-content: center;
+  align-items: flex-start;
+  transition: color 0.3s ease;
 }
 
-/* Pseudo-element for background gradient transition */
 body::before {
     content: '';
-    position: fixed; /* Use fixed to cover the whole viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: var(--background-gradient-light);
-    transition: background 0.9s ease; /* Transition the background property */
-    z-index: -1; /* Place behind content */
+    transition: background 0.9s ease;
+    z-index: -1;
 }
 
 body.dark-mode::before {
-    background: var(--background-gradient-dark); /* Dark mode gradient */
+    background: var(--background-gradient-dark);
 }
 
 body.dark-mode {
-  color: var(--text-color-light); /* Use CSS variable */
+  color: var(--text-color-light);
 }
 
 
 .app-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: var(--gap-xxl); /* Use CSS variable */
+  gap: var(--gap-xxl);
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: var(--padding-xxxl) var(--padding-large); /* Use CSS variables */
+  padding: var(--padding-xxxl) var(--padding-large);
   position: relative;
-  height: auto; /* Let content determine height */
-  overflow-y: visible; /* No internal scroll here */
+  height: auto;
+  overflow-y: visible;
 }
 
-/* Style scrollbars for elements that are explicitly set to scroll */
-/* Applied to specific elements like leaderboard and modal content */
+
 .leaderboard::-webkit-scrollbar,
 .modal-content::-webkit-scrollbar {
-  width: var(--margin-small); /* Use CSS variable */
+  width: var(--margin-small);
 }
 
 .leaderboard::-webkit-scrollbar-track,
 .modal-content::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Light track */
-  border-radius: var(--border-radius-large); /* Use CSS variable */
+  background: #f1f1f1;
+  border-radius: var(--border-radius-large);
 }
 
 .leaderboard::-webkit-scrollbar-thumb,
 .modal-content::-webkit-scrollbar-thumb {
-  background: #888; /* Grey thumb */
-  border-radius: var(--border-radius-large); /* Use CSS variable */
+  background: #888;
+  border-radius: var(--border-radius-large);
 }
 
 .leaderboard::-webkit-scrollbar-thumb:hover,
 .modal-content::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker grey on hover */
+  background: #555;
 }
 
-/* Dark mode scrollbar */
 body.dark-mode .leaderboard::-webkit-scrollbar-track,
 body.dark-mode .modal-content::-webkit-scrollbar-track {
-  background: #424242; /* Dark track */
+  background: #424242;
 }
 
 body.dark-mode .leaderboard::-webkit-scrollbar-thumb,
 body.dark-mode .modal-content::-webkit-scrollbar-thumb {
-  background: #888; /* Grey thumb */
+  background: #888;
 }
 
 
 .side-panel-container {
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  gap: var(--gap-xl); /* Use CSS variable */
+  flex-direction: column;
+  gap: var(--gap-xl);
   width: 100%;
-  max-width: 350px; /* Max width */
-  flex-basis: 350px; /* Base width */
-  flex-grow: 1; /* Allow growth */
-  flex-shrink: 0; /* Prevent shrinking */
-  height: auto; /* Let content determine height */
+  max-width: 350px;
+  flex-basis: 350px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: auto;
 }
 
 
 .container {
   width: 100%;
-  max-width: 550px; /* Increased max-width */
-  flex-basis: 550px; /* Adjusted flex-basis */
-  flex-grow: 1; /* Allow container to grow */
-  background: var(--surface-color-light); /* Use CSS variable */
-  border-radius: var(--border-radius-xxl); /* Use CSS variable */
-  box-shadow: 0 10px 30px var(--shadow-light); /* Use CSS variable */
-  padding: var(--padding-xxxl); /* Use CSS variable */
+  max-width: 550px;
+  flex-basis: 550px;
+  flex-grow: 1;
+  background: var(--surface-color-light);
+  border-radius: var(--border-radius-xxl);
+  box-shadow: 0 10px 30px var(--shadow-light);
+  padding: var(--padding-xxxl);
   text-align: center;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0; /* Prevent shrinking below flex-basis */
-  display: flex; /* Use flex for content inside */
-  flex-direction: column; /* Stack content inside vertically */
-  min-height: 600px; /* Keep a minimum height */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
 }
 
 body.dark-mode .container {
-  background: var(--surface-color-dark); /* Use CSS variable */
-  box-shadow: 0 10px 30px var(--shadow-dark); /* Use CSS variable */
+  background: var(--surface-color-dark);
+  box-shadow: 0 10px 30px var(--shadow-dark);
 }
 
 h1 {
-  font-size: var(--font-size-heading); /* Use CSS variable */
+  font-size: var(--font-size-heading);
   font-weight: 900;
-  margin-bottom: var(--margin-xxl); /* Use CSS variable */
-  color: var(--primary-color); /* Use CSS variable */
-  flex-shrink: 0; /* Prevent shrinking */
+  margin-bottom: var(--margin-xxl);
+  color: var(--primary-color);
+  flex-shrink: 0;
 }
 
 body.dark-mode h1 {
-  color: var(--primary-color-light); /* Use CSS variable */
+  color: var(--primary-color-light);
 }
 
-/* Question and Options Box Styles */
 .question-box, .options-box {
-  border: 1px solid var(--border-color-light); /* Use CSS variable */
-  border-radius: var(--border-radius-large); /* Use CSS variable */
-  padding: var(--padding-xl); /* Use CSS variable */
-  margin-bottom: var(--margin-xl); /* Use CSS variable */
-  background: var(--surface-color-light); /* Use CSS variable */
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius-large);
+  padding: var(--padding-xl);
+  margin-bottom: var(--margin-xl);
+  background: var(--surface-color-light);
   text-align: left;
-  box-shadow: 0 2px 10px var(--shadow-subtle-light); /* Use CSS variable */
+  box-shadow: 0 2px 10px var(--shadow-subtle-light);
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   flex-shrink: 1;
   flex-grow: 1;
-  min-height: 0; /* Allow flex items to shrink */
+  min-height: 0;
 }
 
 body.dark-mode .question-box,
 body.dark-mode .options-box {
-  background: #424242; /* Specific dark shade for these boxes */
-  border-color: var(--border-color-dark); /* Use CSS variable */
-  color: var(--text-color-light); /* Use CSS variable */
-  box-shadow: 0 2px 10px var(--shadow-subtle-dark); /* Use CSS variable */
+  background: #424242;
+  border-color: var(--border-color-dark);
+  color: var(--text-color-light);
+  box-shadow: 0 2px 10px var(--shadow-subtle-dark);
 }
 
 
 .question-box p:first-child {
-    font-size: var(--font-size-xl); /* Use CSS variable */
+    font-size: var(--font-size-xl);
     font-weight: bold;
-    margin-bottom: var(--margin-medium); /* Use CSS variable */
-    color: var(--text-color-dark); /* Use CSS variable */
+    margin-bottom: var(--margin-medium);
+    color: var(--text-color-dark);
 }
 
 body.dark-mode .question-box p:first-child {
-    color: var(--text-color-light); /* Use CSS variable */
+    color: var(--text-color-light);
 }
 
 .question-box p:last-child {
-    font-size: var(--font-size-medium); /* Use CSS variable */
+    font-size: var(--font-size-medium);
     line-height: 1.6;
-    color: var(--text-color-medium); /* Use CSS variable */
+    color: var(--text-color-medium);
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 body.dark-mode .question-box p:last-child {
-    color: var(--text-color-light); /* Use CSS variable */
+    color: var(--text-color-light);
 }
 
 
 .options-box label {
   display: flex;
   align-items: center;
-  gap: var(--gap-medium); /* Use CSS variable */
-  margin: var(--margin-large) 0; /* Use CSS variable */
-  font-size: var(--font-size-large); /* Use CSS variable */
+  gap: var(--gap-medium);
+  margin: var(--margin-large) 0;
+  font-size: var(--font-size-large);
   cursor: pointer;
-  padding: var(--padding-small); /* Use CSS variable */
-  border-radius: var(--border-radius-medium); /* Use CSS variable */
+  padding: var(--padding-small);
+  border-radius: var(--border-radius-medium);
   transition: background-color 0.2s ease;
 }
 
 body.dark-mode .options-box label {
-    color: var(--text-color-light); /* Use CSS variable */
+    color: var(--text-color-light);
 }
 
 
 .options-box label:hover {
-    background-color: #f5f5f5; /* Light hover background */
+    background-color: #f5f5f5;
 }
 
 body.dark-mode .options-box label:hover {
-    background-color: #5a5a5a; /* Dark hover background */
+    background-color: #5a5a5a;
 }
 
 
 .options-box label.correct {
-  background-color: var(--correct-light); /* Use CSS variable */
-  color: var(--correct-text-light); /* Use CSS variable */
-  border: 1px solid var(--correct-border-light); /* Use CSS variable */
+  background-color: var(--correct-light);
+  color: var(--correct-text-light);
+  border: 1px solid var(--correct-border-light);
 }
 
 body.dark-mode .options-box label.correct {
-  background-color: var(--correct-dark); /* Use CSS variable */
-  color: var(--correct-text-dark); /* Use CSS variable */
-  border-color: var(--correct-border-dark); /* Use CSS variable */
+  background-color: var(--correct-dark);
+  color: var(--correct-text-dark);
+  border-color: var(--correct-border-dark);
 }
 
 
 .options-box label.incorrect {
-  background-color: var(--incorrect-light); /* Use CSS variable */
-  color: var(--incorrect-text-light); /* Use CSS variable */
+  background-color: var(--incorrect-light);
+  color: var(--incorrect-text-light);
   font-weight: bold;
-  border: 1px solid var(--incorrect-border-light); /* Use CSS variable */
+  border: 1px solid var(--incorrect-border-light);
 }
 
 body.dark-mode .options-box label.incorrect {
-  background-color: var(--incorrect-dark); /* Use CSS variable */
-  color: var(--incorrect-text-dark); /* Use CSS variable */
-  border-color: var(--incorrect-border-dark); /* Use CSS variable */
+  background-color: var(--incorrect-dark);
+  color: var(--incorrect-text-dark);
+  border-color: var(--incorrect-border-dark);
 }
 
 
 input[type="radio"] {
-  transform: scale(1.3); /* Slightly larger radio buttons */
-  accent-color: var(--primary-color); /* Use CSS variable */
-  margin-right: 5px; /* Add some space */
+  transform: scale(1.3);
+  accent-color: var(--primary-color);
+  margin-right: 5px;
 }
 
 
-/* Button Styles */
 .btn {
   width: 100%;
-  background-color: var(--primary-color-light-hover); /* Use CSS variable */
+  background-color: var(--primary-color-light-hover);
   color: white;
   border: none;
-  padding: var(--padding-medium); /* Use CSS variable */
-  margin: var(--margin-small) 0; /* Use CSS variable */
-  border-radius: var(--border-radius-round); /* Use CSS variable */
-  font-size: var(--font-size-xl); /* Use CSS variable */
+  padding: var(--padding-medium);
+  margin: var(--margin-small) 0;
+  border-radius: var(--border-radius-round);
+  font-size: var(--font-size-xl);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0 4px 15px var(--shadow-light); /* Use CSS variable */
+  box-shadow: 0 4px 15px var(--shadow-light);
   flex-shrink: 0;
 }
 
 .btn:hover {
-  background-color: var(--primary-color-dark); /* Use CSS variable */
+  background-color: var(--primary-color-dark);
 }
 
 .btn:disabled {
-    background-color: var(--disabled-color); /* Use CSS variable */
-    color: var(--disabled-text); /* Use CSS variable */
+    background-color: var(--disabled-color);
+    color: var(--disabled-text);
     cursor: not-allowed;
     box-shadow: none;
 }
 
 .small-btn {
-  background-color: var(--primary-color-light); /* Use CSS variable */
+  background-color: var(--primary-color-light);
   color: white;
   border: none;
-  border-radius: var(--border-radius-xxl); /* Use CSS variable */
-  padding: var(--padding-small) var(--padding-medium); /* Adjusted padding */
-  font-size: var(--font-size-medium); /* Use CSS variable */
+  border-radius: var(--border-radius-xxl);
+  padding: var(--padding-small) var(--padding-medium);
+  font-size: var(--font-size-medium);
   font-weight: 500;
   transition: background-color 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 10px var(--shadow-subtle-light); /* Use CSS variable */
+  box-shadow: 0 2px 10px var(--shadow-subtle-light);
 }
 
 .small-btn:hover {
-  background-color: var(--primary-color-light-hover); /* Use CSS variable */
+  background-color: var(--primary-color-light-hover);
 }
 
 .small-btn:disabled {
-     background-color: var(--disabled-color); /* Use CSS variable */
-     color: var(--disabled-text); /* Use CSS variable */
+     background-color: var(--disabled-color);
+     color: var(--disabled-text);
     cursor: not-allowed;
     box-shadow: none;
 }
 
-/* Info Row Styles */
 .info-row {
   display: flex;
   justify-content: space-between;
-  margin: var(--margin-xl) 0; /* Use CSS variable */
-  padding: var(--padding-medium) var(--padding-small) 0 var(--padding-small); /* Use CSS variables */
-  font-size: var(--font-size-medium); /* Use CSS variable */
-  color: var(--text-color-medium); /* Use CSS variable */
+  margin: var(--margin-xl) 0;
+  padding: var(--padding-medium) var(--padding-small) 0 var(--padding-small);
+  font-size: var(--font-size-medium);
+  color: var(--text-color-medium);
   transition: color 0.3s ease;
-  border-top: 1px solid #eee; /* Use a static color for a subtle line */
+  border-top: 1px solid #eee;
   flex-shrink: 0;
 }
 
 body.dark-mode .info-row {
-    color: var(--text-color-light); /* Use CSS variable */
-    border-top-color: var(--border-color-dark); /* Use CSS variable */
+    color: var(--text-color-light);
+    border-top-color: var(--border-color-dark);
 }
 
-/* Bottom Section and Buttons */
 .bottom-section {
-    margin-top: auto; /* Push this section to the bottom of the flex container */
+    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-medium); /* Use CSS variable */
-    padding-top: var(--padding-large); /* Use CSS variable */
+    gap: var(--gap-medium);
+    padding-top: var(--padding-large);
 }
 
 .bottom-buttons {
   display: flex;
   justify-content: center;
-  gap: var(--gap-small); /* Use CSS variable */
-  margin-top: var(--margin-medium); /* Use CSS variable */
+  gap: var(--gap-small);
+  margin-top: var(--margin-medium);
   flex-shrink: 0;
 }
 
-/* Side Panel Styles (Settings and Leaderboard) */
 .settings-panel,
 .leaderboard {
   width: 100%;
-  background: var(--surface-color-light); /* Use CSS variable */
-  border-radius: var(--border-radius-xxl); /* Use CSS variable */
-  box-shadow: 0 10px 30px var(--shadow-light); /* Use CSS variable */
-  padding: var(--padding-xxl); /* Use CSS variable */
+  background: var(--surface-color-light);
+  border-radius: var(--border-radius-xxl);
+  box-shadow: 0 10px 30px var(--shadow-light);
+  padding: var(--padding-xxl);
   text-align: left;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
 }
 
 body.dark-mode .settings-panel,
 body.dark-mode .leaderboard {
-  background: var(--surface-color-dark); /* Use CSS variable */
-  box-shadow: 0 10px 30px var(--shadow-dark); /* Use CSS variable */
+  background: var(--surface-color-dark);
+  box-shadow: 0 10px 30px var(--shadow-dark);
 }
 
 
 .settings-panel h2,
 .leaderboard h2 {
-  font-size: var(--font-size-xxxl); /* Use CSS variable */
-  margin-bottom: var(--margin-xl); /* Use CSS variable */
-  color: var(--primary-color); /* Use CSS variable */
+  font-size: var(--font-size-xxxl);
+  margin-bottom: var(--margin-xl);
+  color: var(--primary-color);
   transition: color 0.3s ease;
 }
 
 body.dark-mode .settings-panel h2,
 body.dark-mode .leaderboard h2 {
-  color: var(--primary-color-light); /* Use CSS variable */
+  color: var(--primary-color-light);
 }
 
 
 .settings-panel label {
   display: flex;
   align-items: center;
-  gap: var(--gap-small); /* Use CSS variable */
-  margin-bottom: var(--margin-xl); /* Use CSS variable */
-  font-size: var(--font-size-large); /* Use CSS variable */
-  color: var(--text-color-dark); /* Use CSS variable */
+  gap: var(--gap-small);
+  margin-bottom: var(--margin-xl);
+  font-size: var(--font-size-large);
+  color: var(--text-color-dark);
   transition: color 0.3s ease;
 }
 
 body.dark-mode .settings-panel label {
-  color: var(--text-color-light); /* Use CSS variable */
+  color: var(--text-color-light);
 }
 
 
 .settings-panel input[type="checkbox"],
 .settings-panel select {
   margin-top: 0;
-  font-size: var(--font-size-medium); /* Use CSS variable */
-  padding: 6px; /* Keep specific padding for input elements */
-  border-radius: var(--border-radius-small); /* Use CSS variable */
-  border: 1px solid #ccc; /* Use a static color for a subtle border */
+  font-size: var(--font-size-medium);
+  padding: 6px;
+  border-radius: var(--border-radius-small);
+  border: 1px solid #ccc;
 }
 
 body.dark-mode .settings-panel input[type="checkbox"],
 body.dark-mode .settings-panel select {
-  background-color: #555; /* Specific dark color for inputs */
-  border-color: #666; /* Specific dark border for inputs */
-  color: var(--text-color-light); /* Use CSS variable */
+  background-color: #555;
+  border-color: #666;
+  color: var(--text-color-light);
 }
 
 
@@ -478,75 +463,73 @@ body.dark-mode .settings-panel select {
 }
 
 .leaderboard li {
-    padding: var(--padding-small) 0; /* Use CSS variable */
-    border-bottom: 1px solid #eee; /* Use a static color for a subtle line */
-    font-size: var(--font-size-large); /* Use CSS variable */
-    color: var(--text-color-medium); /* Use CSS variable */
+    padding: var(--padding-small) 0;
+    border-bottom: 1px solid #eee;
+    font-size: var(--font-size-large);
+    color: var(--text-color-medium);
     transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 body.dark-mode .leaderboard li {
-    color: var(--text-color-light); /* Use CSS variable */
-    border-bottom-color: var(--border-color-dark); /* Use CSS variable */
+    color: var(--text-color-light);
+    border-bottom-color: var(--border-color-dark);
 }
 
 .leaderboard li:last-child {
-    border-bottom: none; /* Remove border from the last item */
+    border-bottom: none;
 }
 
-/* Allow leaderboard content to scroll if it overflows */
 .leaderboard {
     overflow-y: auto;
-    flex-grow: 1; /* Allow leaderboard to take available space */
-    min-height: 0; /* Allow flex item to shrink */
+    flex-grow: 1;
+    min-height: 0;
 }
 
 
-/* Modal Styles (Explanation and Confirmation) */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Dimmed background */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it's on top */
-    animation: fadeIn 0.3s ease; /* Fade-in animation */
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
-    background-color: var(--surface-color-light); /* Use CSS variable */
-    padding: var(--padding-xxl); /* Use CSS variable */
-    border-radius: var(--border-radius-xl); /* Use CSS variable */
-    max-width: 600px; /* Max width */
-    width: 90%; /* Responsive width */
-    position: relative; /* Needed for close button */
-    box-shadow: 0 10px 30px var(--shadow-light); /* Use CSS variable */
-    animation: slideIn 0.3s ease; /* Slide-in animation */
-    max-height: 90vh; /* Max height relative to viewport */
-    overflow-y: auto; /* Internal scrolling */
-    color: var(--text-color-dark); /* Default text color for modal content */
+    background-color: var(--surface-color-light);
+    padding: var(--padding-xxl);
+    border-radius: var(--border-radius-xl);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    animation: slideIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: var(--text-color-dark);
 }
 
 body.dark-mode .modal-content {
-    background-color: var(--surface-color-dark); /* Use CSS variable */
-    box-shadow: 0 10px 30px var(--shadow-dark); /* Use CSS variable */
-    color: var(--text-color-light); /* Dark mode text color */
+    background-color: var(--surface-color-dark);
+    box-shadow: 0 10px 30px var(--shadow-dark);
+    color: var(--text-color-light);
 }
 
 
 .modal-content h3 {
     margin-top: 0;
-    margin-bottom: var(--margin-large); /* Use CSS variable */
-    color: var(--primary-color); /* Use CSS variable */
-    font-size: var(--font-size-xxl); /* Use CSS variable */
+    margin-bottom: var(--margin-large);
+    color: var(--primary-color);
+    font-size: var(--font-size-xxl);
 }
 
 body.dark-mode .modal-content h3 {
-  color: var(--primary-color-light); /* Use CSS variable */
+  color: var(--primary-color-light);
 }
 
 
@@ -556,21 +539,21 @@ body.dark-mode .modal-content h3 {
     background-color: transparent;
     border-left: none;
     border-radius: 0;
-    font-size: var(--font-size-medium); /* Use CSS variable */
-    color: var(--text-color-dark); /* Default text color */
+    font-size: var(--font-size-medium);
+    color: var(--text-color-dark);
     text-align: left;
     box-shadow: none;
 }
 
 body.dark-mode .explanation-box {
-    color: var(--text-color-light); /* Dark mode text color */
+    color: var(--text-color-light);
 }
 
 
 .close-button {
     position: absolute;
-    top: var(--padding-medium); /* Use CSS variable */
-    right: var(--padding-large); /* Use CSS variable */
+    top: var(--padding-medium);
+    right: var(--padding-large);
     font-size: 24px;
     font-weight: bold;
     color: #aaa;
@@ -584,25 +567,22 @@ body.dark-mode .explanation-box {
     text-decoration: none;
 }
 
-/* Confirmation Modal Specific Styles */
-/* Removed empty .confirmation-close rule */
 
 .modal-buttons {
   display: flex;
-  justify-content: center; /* Center the buttons */
-  gap: var(--gap-small); /* Use CSS variable */
-  margin-top: var(--margin-xl); /* Use CSS variable */
+  justify-content: center;
+  gap: var(--gap-small);
+  margin-top: var(--margin-xl);
 }
 
 .modal-buttons .small-btn {
-  padding: var(--padding-small) var(--padding-medium); /* Smaller padding */
-  font-size: var(--font-size-medium); /* Smaller font size */
+  padding: var(--padding-small) var(--padding-medium);
+  font-size: var(--font-size-medium);
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -614,30 +594,27 @@ body.dark-mode .explanation-box {
 }
 
 
-/* Timer color for low time in both modes */
 span#timer {
     transition: color 0.3s ease;
     font-weight: bold;
 }
 
 span#timer[style*="red"] {
-    color: red !important; /* Use !important to override dark mode color if needed */
+    color: red !important;
 }
 
 
-/* Responsive adjustments */
-@media (max-width: 1000px) { /* Adjusted breakpoint */
+@media (max-width: 1000px) {
   body {
-      /* Centering removed in favor of flex-start for stacking */
       align-items: flex-start;
-      padding: var(--padding-medium); /* Adjusted padding for smaller screens */
+      padding: var(--padding-medium);
   }
 
   .app-wrapper {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     align-items: center;
-    gap: var(--gap-large); /* Adjusted gap */
-    padding: var(--padding-large) var(--padding-medium); /* Adjusted padding */
+    gap: var(--gap-large);
+    padding: var(--padding-large) var(--padding-medium);
     height: auto;
     overflow-y: visible;
     margin: 0 auto;
@@ -645,21 +622,21 @@ span#timer[style*="red"] {
 
    .side-panel-container {
        flex-direction: column;
-       gap: var(--gap-large); /* Adjusted gap */
-       max-width: 100%; /* Allow full width */
+       gap: var(--gap-large);
+       max-width: 100%;
        flex-basis: auto;
         height: auto;
    }
 
 
   .container {
-    max-width: 100%; /* Allow full width */
+    max-width: 100%;
     width: 100%;
     flex-basis: auto;
-    padding: var(--padding-large); /* Adjusted padding */
+    padding: var(--padding-large);
     height: auto;
     overflow-y: visible;
-    min-height: auto; /* Remove min-height constraint when stacked */
+    min-height: auto;
   }
 
    .question-box, .options-box, .leaderboard {
@@ -669,81 +646,81 @@ span#timer[style*="red"] {
    }
 
    .leaderboard {
-        margin-top: var(--margin-large); /* Add margin when stacked */
-        padding-top: var(--padding-large); /* Add padding when stacked */
-        border-top: 1px solid #eee; /* Add border when stacked */
+        margin-top: var(--margin-large);
+        padding-top: var(--padding-large);
+        border-top: 1px solid #eee;
     }
 
     body.dark-mode .leaderboard {
-         border-top-color: var(--border-color-dark); /* Dark mode border */
+         border-top-color: var(--border-color-dark);
     }
 
 
   h1 {
-    font-size: var(--font-size-xxxl); /* Adjusted font size */
-    margin-bottom: var(--margin-xl); /* Adjusted margin */
+    font-size: var(--font-size-xxxl);
+    margin-bottom: var(--margin-xl);
   }
 
    .question-box, .options-box {
-        padding: var(--padding-medium); /* Adjusted padding */
-        margin-bottom: var(--margin-large); /* Adjusted margin */
+        padding: var(--padding-medium);
+        margin-bottom: var(--margin-large);
    }
 
   .btn {
-    padding: var(--padding-medium); /* Adjusted padding */
-    font-size: var(--font-size-large); /* Adjusted font size */
-     margin: var(--margin-small) 0; /* Adjusted margin */
+    padding: var(--padding-medium);
+    font-size: var(--font-size-large);
+     margin: var(--margin-small) 0;
   }
 
   .small-btn {
-    padding: var(--padding-small) var(--padding-medium); /* Adjusted padding */
-    font-size: var(--font-size-medium); /* Adjusted font size */
+    padding: var(--padding-small) var(--padding-medium);
+    font-size: var(--font-size-medium);
   }
 
   .info-row {
       flex-direction: column;
-      gap: var(--gap-small); /* Adjusted gap */
-      padding: var(--padding-medium) 0 0 0; /* Adjusted padding */
-      margin-top: var(--margin-medium); /* Adjusted margin */
+      gap: var(--gap-small);
+      padding: var(--padding-medium) 0 0 0;
+      margin-top: var(--margin-medium);
       text-align: center;
   }
 
   .bottom-section {
-      padding-top: var(--padding-medium); /* Adjusted padding */
-      gap: var(--gap-medium); /* Adjusted gap */
+      padding-top: var(--padding-medium);
+      gap: var(--gap-medium);
   }
 
   .bottom-buttons {
-      gap: var(--gap-small); /* Adjusted gap */
-      margin-top: var(--margin-medium); /* Adjusted margin */
+      gap: var(--gap-small);
+      margin-top: var(--margin-medium);
   }
 
 
    .settings-panel h2 {
-       font-size: var(--font-size-xxl); /* Adjusted font size */
-       margin-bottom: var(--margin-large); /* Adjusted margin */
+       font-size: var(--font-size-xxl);
+       margin-bottom: var(--margin-large);
    }
 
    .settings-panel label {
-       margin-bottom: var(--margin-large); /* Adjusted margin */
+       margin-bottom: var(--margin-large);
    }
 
 
     .leaderboard h2 {
-        font-size: var(--font-size-xl); /* Adjusted font size */
-        margin-bottom: var(--margin-small); /* Adjusted margin */
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--margin-small);
     }
 
     .leaderboard li {
-        font-size: var(--font-size-medium); /* Adjusted font size */
-        padding: var(--padding-small) 0; /* Adjusted padding */
+        font-size: var(--font-size-medium);
+        padding: var(--padding-small) 0;
     }
 
      .modal-content {
-        padding: var(--padding-large); /* Adjusted padding */
+        padding: var(--padding-large);
     }
 
      .modal-content h3 {
-        font-size: var(--font-size-xl); /* Adjusted font size */
+        font-size: var(--font-size-xl);
     }
 }
