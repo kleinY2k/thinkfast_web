@@ -1,0 +1,749 @@
+/* General Styles */
+/* Define CSS Variables for easier maintenance and theming */
+:root {
+  /* Color Palette */
+  --primary-color: #5e35b1; /* Heading color, main button accent */
+  --primary-color-dark: #673ab7; /* Primary color hover */
+  --primary-color-light: #9575cd; /* Small button color */
+  --primary-color-light-hover: #7e57c2; /* Small button hover */
+  --background-gradient-light: linear-gradient(to bottom right, #a8edea, #fed6e3);
+  --background-gradient-dark: linear-gradient(to bottom right, #424242, #212121);
+  --text-color-dark: #333;
+  --text-color-light: #eee;
+  --text-color-medium: #555; /* Used for less important text */
+  --surface-color-light: white;
+  --surface-color-dark: #303030;
+  --border-color-light: #e0e0e0;
+  --border-color-dark: #555;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+  --shadow-subtle-light: rgba(0, 0, 0, 0.05);
+  --shadow-subtle-dark: rgba(0, 0, 0, 0.3);
+  --correct-light: #e8f5e9; /* Light green background */
+  --correct-dark: #388e3c; /* Darker green background */
+  --correct-text-light: #2e7d32; /* Dark green text */
+  --correct-text-dark: #e8f5e9; /* Light green text */
+  --correct-border-light: #a5d6a7; /* Green border */
+  --correct-border-dark: #66bb6a; /* Lighter green border */
+  --incorrect-light: #ffebee; /* Light red background */
+  --incorrect-dark: #d32f2f; /* Darker red background */
+  --incorrect-text-light: #c62828; /* Dark red text */
+  --incorrect-text-dark: #ffebee; /* Light red text */
+  --incorrect-border-light: #ef9a9a; /* Red border */
+  --incorrect-border-dark: #ef5350; /* Lighter red border */
+  --disabled-color: #cccccc;
+  --disabled-text: #666; /* Added for disabled state text */
+
+  /* Spacing */
+  --padding-small: 10px;
+  --padding-medium: 15px;
+  --padding-large: 20px;
+  --padding-xl: 25px;
+  --padding-xxl: 30px;
+  --padding-xxxl: 35px;
+  --margin-small: 8px;
+  --margin-medium: 10px;
+  --margin-large: 15px;
+  --margin-xl: 20px;
+  --margin-xxl: 30px;
+  --margin-xxxl: 40px;
+  --gap-small: 10px;
+  --gap-medium: 15px;
+  --gap-large: 20px;
+  --gap-xl: 30px;
+  --gap-xxl: 40px;
+
+  /* Border Radius */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-xl: 15px;
+  --border-radius-xxl: 20px;
+  --border-radius-round: 25px;
+
+  /* Font Sizes */
+  --font-size-small: 14px;
+  --font-size-medium: 15px;
+  --font-size-large: 16px;
+  --font-size-xl: 17px;
+  --font-size-xxl: 20px;
+  --font-size-xxxl: 22px;
+  --font-size-heading: 32px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  /* Use a pseudo-element for background transition */
+  position: relative;
+  min-height: 100vh;
+  padding: var(--padding-large); /* Use CSS variable */
+  color: var(--text-color-dark); /* Use CSS variable */
+  overflow-y: auto; /* Allow body scroll by default */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: flex-start; /* Align items to the top */
+  transition: color 0.3s ease; /* Smooth text color transition */
+}
+
+/* Pseudo-element for background gradient transition */
+body::before {
+    content: '';
+    position: fixed; /* Use fixed to cover the whole viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-gradient-light);
+    transition: background 0.9s ease; /* Transition the background property */
+    z-index: -1; /* Place behind content */
+}
+
+body.dark-mode::before {
+    background: var(--background-gradient-dark); /* Dark mode gradient */
+}
+
+body.dark-mode {
+  color: var(--text-color-light); /* Use CSS variable */
+}
+
+
+.app-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--gap-xxl); /* Use CSS variable */
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--padding-xxxl) var(--padding-large); /* Use CSS variables */
+  position: relative;
+  height: auto; /* Let content determine height */
+  overflow-y: visible; /* No internal scroll here */
+}
+
+/* Style scrollbars for elements that are explicitly set to scroll */
+/* Applied to specific elements like leaderboard and modal content */
+.leaderboard::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: var(--margin-small); /* Use CSS variable */
+}
+
+.leaderboard::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light track */
+  border-radius: var(--border-radius-large); /* Use CSS variable */
+}
+
+.leaderboard::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: #888; /* Grey thumb */
+  border-radius: var(--border-radius-large); /* Use CSS variable */
+}
+
+.leaderboard::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker grey on hover */
+}
+
+/* Dark mode scrollbar */
+body.dark-mode .leaderboard::-webkit-scrollbar-track,
+body.dark-mode .modal-content::-webkit-scrollbar-track {
+  background: #424242; /* Dark track */
+}
+
+body.dark-mode .leaderboard::-webkit-scrollbar-thumb,
+body.dark-mode .modal-content::-webkit-scrollbar-thumb {
+  background: #888; /* Grey thumb */
+}
+
+
+.side-panel-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  gap: var(--gap-xl); /* Use CSS variable */
+  width: 100%;
+  max-width: 350px; /* Max width */
+  flex-basis: 350px; /* Base width */
+  flex-grow: 1; /* Allow growth */
+  flex-shrink: 0; /* Prevent shrinking */
+  height: auto; /* Let content determine height */
+}
+
+
+.container {
+  width: 100%;
+  max-width: 550px; /* Increased max-width */
+  flex-basis: 550px; /* Adjusted flex-basis */
+  flex-grow: 1; /* Allow container to grow */
+  background: var(--surface-color-light); /* Use CSS variable */
+  border-radius: var(--border-radius-xxl); /* Use CSS variable */
+  box-shadow: 0 10px 30px var(--shadow-light); /* Use CSS variable */
+  padding: var(--padding-xxxl); /* Use CSS variable */
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0; /* Prevent shrinking below flex-basis */
+  display: flex; /* Use flex for content inside */
+  flex-direction: column; /* Stack content inside vertically */
+  min-height: 600px; /* Keep a minimum height */
+}
+
+body.dark-mode .container {
+  background: var(--surface-color-dark); /* Use CSS variable */
+  box-shadow: 0 10px 30px var(--shadow-dark); /* Use CSS variable */
+}
+
+h1 {
+  font-size: var(--font-size-heading); /* Use CSS variable */
+  font-weight: 900;
+  margin-bottom: var(--margin-xxl); /* Use CSS variable */
+  color: var(--primary-color); /* Use CSS variable */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+body.dark-mode h1 {
+  color: var(--primary-color-light); /* Use CSS variable */
+}
+
+/* Question and Options Box Styles */
+.question-box, .options-box {
+  border: 1px solid var(--border-color-light); /* Use CSS variable */
+  border-radius: var(--border-radius-large); /* Use CSS variable */
+  padding: var(--padding-xl); /* Use CSS variable */
+  margin-bottom: var(--margin-xl); /* Use CSS variable */
+  background: var(--surface-color-light); /* Use CSS variable */
+  text-align: left;
+  box-shadow: 0 2px 10px var(--shadow-subtle-light); /* Use CSS variable */
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 1;
+  flex-grow: 1;
+  min-height: 0; /* Allow flex items to shrink */
+}
+
+body.dark-mode .question-box,
+body.dark-mode .options-box {
+  background: #424242; /* Specific dark shade for these boxes */
+  border-color: var(--border-color-dark); /* Use CSS variable */
+  color: var(--text-color-light); /* Use CSS variable */
+  box-shadow: 0 2px 10px var(--shadow-subtle-dark); /* Use CSS variable */
+}
+
+
+.question-box p:first-child {
+    font-size: var(--font-size-xl); /* Use CSS variable */
+    font-weight: bold;
+    margin-bottom: var(--margin-medium); /* Use CSS variable */
+    color: var(--text-color-dark); /* Use CSS variable */
+}
+
+body.dark-mode .question-box p:first-child {
+    color: var(--text-color-light); /* Use CSS variable */
+}
+
+.question-box p:last-child {
+    font-size: var(--font-size-medium); /* Use CSS variable */
+    line-height: 1.6;
+    color: var(--text-color-medium); /* Use CSS variable */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+body.dark-mode .question-box p:last-child {
+    color: var(--text-color-light); /* Use CSS variable */
+}
+
+
+.options-box label {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium); /* Use CSS variable */
+  margin: var(--margin-large) 0; /* Use CSS variable */
+  font-size: var(--font-size-large); /* Use CSS variable */
+  cursor: pointer;
+  padding: var(--padding-small); /* Use CSS variable */
+  border-radius: var(--border-radius-medium); /* Use CSS variable */
+  transition: background-color 0.2s ease;
+}
+
+body.dark-mode .options-box label {
+    color: var(--text-color-light); /* Use CSS variable */
+}
+
+
+.options-box label:hover {
+    background-color: #f5f5f5; /* Light hover background */
+}
+
+body.dark-mode .options-box label:hover {
+    background-color: #5a5a5a; /* Dark hover background */
+}
+
+
+.options-box label.correct {
+  background-color: var(--correct-light); /* Use CSS variable */
+  color: var(--correct-text-light); /* Use CSS variable */
+  border: 1px solid var(--correct-border-light); /* Use CSS variable */
+}
+
+body.dark-mode .options-box label.correct {
+  background-color: var(--correct-dark); /* Use CSS variable */
+  color: var(--correct-text-dark); /* Use CSS variable */
+  border-color: var(--correct-border-dark); /* Use CSS variable */
+}
+
+
+.options-box label.incorrect {
+  background-color: var(--incorrect-light); /* Use CSS variable */
+  color: var(--incorrect-text-light); /* Use CSS variable */
+  font-weight: bold;
+  border: 1px solid var(--incorrect-border-light); /* Use CSS variable */
+}
+
+body.dark-mode .options-box label.incorrect {
+  background-color: var(--incorrect-dark); /* Use CSS variable */
+  color: var(--incorrect-text-dark); /* Use CSS variable */
+  border-color: var(--incorrect-border-dark); /* Use CSS variable */
+}
+
+
+input[type="radio"] {
+  transform: scale(1.3); /* Slightly larger radio buttons */
+  accent-color: var(--primary-color); /* Use CSS variable */
+  margin-right: 5px; /* Add some space */
+}
+
+
+/* Button Styles */
+.btn {
+  width: 100%;
+  background-color: var(--primary-color-light-hover); /* Use CSS variable */
+  color: white;
+  border: none;
+  padding: var(--padding-medium); /* Use CSS variable */
+  margin: var(--margin-small) 0; /* Use CSS variable */
+  border-radius: var(--border-radius-round); /* Use CSS variable */
+  font-size: var(--font-size-xl); /* Use CSS variable */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 15px var(--shadow-light); /* Use CSS variable */
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  background-color: var(--primary-color-dark); /* Use CSS variable */
+}
+
+.btn:disabled {
+    background-color: var(--disabled-color); /* Use CSS variable */
+    color: var(--disabled-text); /* Use CSS variable */
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.small-btn {
+  background-color: var(--primary-color-light); /* Use CSS variable */
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-xxl); /* Use CSS variable */
+  padding: var(--padding-small) var(--padding-medium); /* Adjusted padding */
+  font-size: var(--font-size-medium); /* Use CSS variable */
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 10px var(--shadow-subtle-light); /* Use CSS variable */
+}
+
+.small-btn:hover {
+  background-color: var(--primary-color-light-hover); /* Use CSS variable */
+}
+
+.small-btn:disabled {
+     background-color: var(--disabled-color); /* Use CSS variable */
+     color: var(--disabled-text); /* Use CSS variable */
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Info Row Styles */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--margin-xl) 0; /* Use CSS variable */
+  padding: var(--padding-medium) var(--padding-small) 0 var(--padding-small); /* Use CSS variables */
+  font-size: var(--font-size-medium); /* Use CSS variable */
+  color: var(--text-color-medium); /* Use CSS variable */
+  transition: color 0.3s ease;
+  border-top: 1px solid #eee; /* Use a static color for a subtle line */
+  flex-shrink: 0;
+}
+
+body.dark-mode .info-row {
+    color: var(--text-color-light); /* Use CSS variable */
+    border-top-color: var(--border-color-dark); /* Use CSS variable */
+}
+
+/* Bottom Section and Buttons */
+.bottom-section {
+    margin-top: auto; /* Push this section to the bottom of the flex container */
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-medium); /* Use CSS variable */
+    padding-top: var(--padding-large); /* Use CSS variable */
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-small); /* Use CSS variable */
+  margin-top: var(--margin-medium); /* Use CSS variable */
+  flex-shrink: 0;
+}
+
+/* Side Panel Styles (Settings and Leaderboard) */
+.settings-panel,
+.leaderboard {
+  width: 100%;
+  background: var(--surface-color-light); /* Use CSS variable */
+  border-radius: var(--border-radius-xxl); /* Use CSS variable */
+  box-shadow: 0 10px 30px var(--shadow-light); /* Use CSS variable */
+  padding: var(--padding-xxl); /* Use CSS variable */
+  text-align: left;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+body.dark-mode .settings-panel,
+body.dark-mode .leaderboard {
+  background: var(--surface-color-dark); /* Use CSS variable */
+  box-shadow: 0 10px 30px var(--shadow-dark); /* Use CSS variable */
+}
+
+
+.settings-panel h2,
+.leaderboard h2 {
+  font-size: var(--font-size-xxxl); /* Use CSS variable */
+  margin-bottom: var(--margin-xl); /* Use CSS variable */
+  color: var(--primary-color); /* Use CSS variable */
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .settings-panel h2,
+body.dark-mode .leaderboard h2 {
+  color: var(--primary-color-light); /* Use CSS variable */
+}
+
+
+.settings-panel label {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small); /* Use CSS variable */
+  margin-bottom: var(--margin-xl); /* Use CSS variable */
+  font-size: var(--font-size-large); /* Use CSS variable */
+  color: var(--text-color-dark); /* Use CSS variable */
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .settings-panel label {
+  color: var(--text-color-light); /* Use CSS variable */
+}
+
+
+.settings-panel input[type="checkbox"],
+.settings-panel select {
+  margin-top: 0;
+  font-size: var(--font-size-medium); /* Use CSS variable */
+  padding: 6px; /* Keep specific padding for input elements */
+  border-radius: var(--border-radius-small); /* Use CSS variable */
+  border: 1px solid #ccc; /* Use a static color for a subtle border */
+}
+
+body.dark-mode .settings-panel input[type="checkbox"],
+body.dark-mode .settings-panel select {
+  background-color: #555; /* Specific dark color for inputs */
+  border-color: #666; /* Specific dark border for inputs */
+  color: var(--text-color-light); /* Use CSS variable */
+}
+
+
+.leaderboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+.leaderboard li {
+    padding: var(--padding-small) 0; /* Use CSS variable */
+    border-bottom: 1px solid #eee; /* Use a static color for a subtle line */
+    font-size: var(--font-size-large); /* Use CSS variable */
+    color: var(--text-color-medium); /* Use CSS variable */
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .leaderboard li {
+    color: var(--text-color-light); /* Use CSS variable */
+    border-bottom-color: var(--border-color-dark); /* Use CSS variable */
+}
+
+.leaderboard li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+/* Allow leaderboard content to scroll if it overflows */
+.leaderboard {
+    overflow-y: auto;
+    flex-grow: 1; /* Allow leaderboard to take available space */
+    min-height: 0; /* Allow flex item to shrink */
+}
+
+
+/* Modal Styles (Explanation and Confirmation) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dimmed background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+    animation: fadeIn 0.3s ease; /* Fade-in animation */
+}
+
+.modal-content {
+    background-color: var(--surface-color-light); /* Use CSS variable */
+    padding: var(--padding-xxl); /* Use CSS variable */
+    border-radius: var(--border-radius-xl); /* Use CSS variable */
+    max-width: 600px; /* Max width */
+    width: 90%; /* Responsive width */
+    position: relative; /* Needed for close button */
+    box-shadow: 0 10px 30px var(--shadow-light); /* Use CSS variable */
+    animation: slideIn 0.3s ease; /* Slide-in animation */
+    max-height: 90vh; /* Max height relative to viewport */
+    overflow-y: auto; /* Internal scrolling */
+    color: var(--text-color-dark); /* Default text color for modal content */
+}
+
+body.dark-mode .modal-content {
+    background-color: var(--surface-color-dark); /* Use CSS variable */
+    box-shadow: 0 10px 30px var(--shadow-dark); /* Use CSS variable */
+    color: var(--text-color-light); /* Dark mode text color */
+}
+
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: var(--margin-large); /* Use CSS variable */
+    color: var(--primary-color); /* Use CSS variable */
+    font-size: var(--font-size-xxl); /* Use CSS variable */
+}
+
+body.dark-mode .modal-content h3 {
+  color: var(--primary-color-light); /* Use CSS variable */
+}
+
+
+.explanation-box {
+    margin-top: 0;
+    padding: 0;
+    background-color: transparent;
+    border-left: none;
+    border-radius: 0;
+    font-size: var(--font-size-medium); /* Use CSS variable */
+    color: var(--text-color-dark); /* Default text color */
+    text-align: left;
+    box-shadow: none;
+}
+
+body.dark-mode .explanation-box {
+    color: var(--text-color-light); /* Dark mode text color */
+}
+
+
+.close-button {
+    position: absolute;
+    top: var(--padding-medium); /* Use CSS variable */
+    right: var(--padding-large); /* Use CSS variable */
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #777;
+    text-decoration: none;
+}
+
+/* Confirmation Modal Specific Styles */
+/* Removed empty .confirmation-close rule */
+
+.modal-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  gap: var(--gap-small); /* Use CSS variable */
+  margin-top: var(--margin-xl); /* Use CSS variable */
+}
+
+.modal-buttons .small-btn {
+  padding: var(--padding-small) var(--padding-medium); /* Smaller padding */
+  font-size: var(--font-size-medium); /* Smaller font size */
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Timer color for low time in both modes */
+span#timer {
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+span#timer[style*="red"] {
+    color: red !important; /* Use !important to override dark mode color if needed */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1000px) { /* Adjusted breakpoint */
+  body {
+      /* Centering removed in favor of flex-start for stacking */
+      align-items: flex-start;
+      padding: var(--padding-medium); /* Adjusted padding for smaller screens */
+  }
+
+  .app-wrapper {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    gap: var(--gap-large); /* Adjusted gap */
+    padding: var(--padding-large) var(--padding-medium); /* Adjusted padding */
+    height: auto;
+    overflow-y: visible;
+    margin: 0 auto;
+  }
+
+   .side-panel-container {
+       flex-direction: column;
+       gap: var(--gap-large); /* Adjusted gap */
+       max-width: 100%; /* Allow full width */
+       flex-basis: auto;
+        height: auto;
+   }
+
+
+  .container {
+    max-width: 100%; /* Allow full width */
+    width: 100%;
+    flex-basis: auto;
+    padding: var(--padding-large); /* Adjusted padding */
+    height: auto;
+    overflow-y: visible;
+    min-height: auto; /* Remove min-height constraint when stacked */
+  }
+
+   .question-box, .options-box, .leaderboard {
+       flex-grow: 0;
+       overflow-y: visible;
+       min-height: auto;
+   }
+
+   .leaderboard {
+        margin-top: var(--margin-large); /* Add margin when stacked */
+        padding-top: var(--padding-large); /* Add padding when stacked */
+        border-top: 1px solid #eee; /* Add border when stacked */
+    }
+
+    body.dark-mode .leaderboard {
+         border-top-color: var(--border-color-dark); /* Dark mode border */
+    }
+
+
+  h1 {
+    font-size: var(--font-size-xxxl); /* Adjusted font size */
+    margin-bottom: var(--margin-xl); /* Adjusted margin */
+  }
+
+   .question-box, .options-box {
+        padding: var(--padding-medium); /* Adjusted padding */
+        margin-bottom: var(--margin-large); /* Adjusted margin */
+   }
+
+  .btn {
+    padding: var(--padding-medium); /* Adjusted padding */
+    font-size: var(--font-size-large); /* Adjusted font size */
+     margin: var(--margin-small) 0; /* Adjusted margin */
+  }
+
+  .small-btn {
+    padding: var(--padding-small) var(--padding-medium); /* Adjusted padding */
+    font-size: var(--font-size-medium); /* Adjusted font size */
+  }
+
+  .info-row {
+      flex-direction: column;
+      gap: var(--gap-small); /* Adjusted gap */
+      padding: var(--padding-medium) 0 0 0; /* Adjusted padding */
+      margin-top: var(--margin-medium); /* Adjusted margin */
+      text-align: center;
+  }
+
+  .bottom-section {
+      padding-top: var(--padding-medium); /* Adjusted padding */
+      gap: var(--gap-medium); /* Adjusted gap */
+  }
+
+  .bottom-buttons {
+      gap: var(--gap-small); /* Adjusted gap */
+      margin-top: var(--margin-medium); /* Adjusted margin */
+  }
+
+
+   .settings-panel h2 {
+       font-size: var(--font-size-xxl); /* Adjusted font size */
+       margin-bottom: var(--margin-large); /* Adjusted margin */
+   }
+
+   .settings-panel label {
+       margin-bottom: var(--margin-large); /* Adjusted margin */
+   }
+
+
+    .leaderboard h2 {
+        font-size: var(--font-size-xl); /* Adjusted font size */
+        margin-bottom: var(--margin-small); /* Adjusted margin */
+    }
+
+    .leaderboard li {
+        font-size: var(--font-size-medium); /* Adjusted font size */
+        padding: var(--padding-small) 0; /* Adjusted padding */
+    }
+
+     .modal-content {
+        padding: var(--padding-large); /* Adjusted padding */
+    }
+
+     .modal-content h3 {
+        font-size: var(--font-size-xl); /* Adjusted font size */
+    }
+}
